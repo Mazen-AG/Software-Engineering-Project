@@ -10,13 +10,14 @@
        border-radius:10px;
        text-align: center;
        box-shadow: 5px 10px;
-       box-shadow: 150px 400px  800px 400px rgb(196, 129, 255);
+       box-shadow: 60px 30px  180px 70px rgb(183, 117, 242);
+      
       
       }
 
       .col2{
         width: 400px;
-       
+     
         border: 2px solid rgb(2, 2, 2);
         background-color: rgb(255, 252, 252);
         color: rgb(7, 7, 7);
@@ -26,10 +27,50 @@
        text-align: center;
        box-shadow: 5px 10px;
       width: 900px;
+      box-shadow: 60px 30px  180px 50px rgb(129, 217, 255);
+      
+      }
+
+      .outer{
+
+           text-align: center;
+           margin-bottom: 70px;
+           font-weight: 1000;
+           font-style: oblique;
+           font-size: 60px;
+      }
+      .send{
+
+         text-align: center;
+    
       }
 .cont{
    margin-top: 30px; 
    margin-right: 80px;
+   
+}
+.email{
+  position: relative;
+  right: 175px;
+  margin-top:200px ;
+    color: rgb(253, 253, 253);
+
+}
+.email2{
+  position:relative;
+  right: 170px;
+  margin-top:205px ;
+    color: rgb(246, 246, 246);
+}
+
+
+.location{
+  position: relative;
+ right: 360px;
+  margin-top:300px ;
+    color: rgb(214, 26, 26);
+  
+
 }
 
 .Tele{
@@ -39,6 +80,7 @@
     margin-top:120px ;
       color: rgb(253, 253, 253);
   }
+  
 
   .Tele2{
 
@@ -47,3 +89,9 @@
     margin-top:125px ;
       color: rgb(246, 246, 246);
   }
+
+.firstname{
+
+     margin-top: 40px;
+     padding: 7px;
+}

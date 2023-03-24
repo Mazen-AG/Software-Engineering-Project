@@ -6,7 +6,7 @@ import Link from 'next/link'
 import 'bootstrap/dist/css/bootstrap.css'
 import Navbar from '../components/navbar'
 
-
+import '@fontsource/roboto/300.css';
 function Home(){
     return(
         <div>
