@@ -14,11 +14,14 @@
     "static/development/_ssgManifest.js"
   ],
   "pages": {
+<<<<<<< Updated upstream
     "/": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
+=======
+>>>>>>> Stashed changes
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
