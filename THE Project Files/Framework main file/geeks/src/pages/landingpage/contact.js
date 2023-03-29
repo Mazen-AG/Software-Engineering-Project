@@ -6,14 +6,15 @@ import Navbar from '../components/navbar';
 import {Telephone} from "react-bootstrap-icons";
 import{Envelope} from "react-bootstrap-icons";
 import{Geo } from "react-bootstrap-icons";
+import { useState } from 'react';
 function Contact(){
+   
     return(
-        <div>
+        <div class={thi.main}>
             <Navbar></Navbar>
            
             
-          
-          
+            
                {/* main row */ }
             
             <div class="row shadow-lg p-5 mb-5 bg-body rounded">
@@ -21,10 +22,8 @@ function Contact(){
               <h4 class={thi.outer}>contact us
                <h5 class={thi.send}>any question?just send us a message</h5>
                </h4>
-                <div class="row shadow-lg p-5 mb-5 bg- rounded">
-                          
-
-                
+                <div class="row shadow-lg p-5  mb-5 bg- rounded" >
+                        
              <div class="row ">
                 {/* main col */ }
                     <div class="col-4 " >
@@ -71,31 +70,55 @@ function Contact(){
                      
                    
                 <div class="col-sm-3">
-                  <h2 class={thi.col2} >what   
-                     <form>
+                  <h2 class={thi.col2} >   send us !
+                   {/* form  section  */}
+
+                     <form method='post' >
+                        {/* firstname section  */}
                         <div class="row">
                          <div class="col">
                            <h2 class={thi.firstname}>
-                          <input type="text" class="form-control" placeholder="First name"/>
+                          <input type="text" class="form-control" placeholder="First name" />
                           </h2>
                        </div>
+                         {/* lastname section  */}
                          <div class="col"> 
                          <h2 class={thi.firstname}>  
                            <input type="text" class="form-control" placeholder="Last name"/>
                            </h2>
                             </div>
                                     </div>
-                            </form>
-                           
 
+               <div class="row">
+                         <div class="col">
+                            {/* lastname section  */}
+                           <h2 class={thi.firstname}>  
+                          <input type="text" class="form-control" placeholder="Email" />
+                          </h2>
+                       </div>
+                         <div class="col"> 
+                          {/* phone number section  */}
+                         <h2 class={thi.firstname}>  
+                           <input type="text" class="form-control" placeholder="phone number" />
+                           </h2>
+                            </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                    <label for="exampleFormControlTextarea1" class={thi.message1}>Message</label>
+                                       <div class ={thi.message2}>
+                                        <textarea class="form-control"  rows="2"></textarea>
+                                        </div>
+                                    </div> 
+                                    <div class={thi.submit} >
+                                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                             </div>
+                            </form>
                      </h2>
 
                        {/*col for first name */}
                      
 
-                          
-                     
-                  
                           </div>
                 </div>
                 
@@ -103,7 +126,7 @@ function Contact(){
                         
           </div>
           </div>
-
+          
     )
 }
 export default Contact;
