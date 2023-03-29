@@ -40,7 +40,7 @@ function Contact(){
                         <div class="col-3">
                            <h5 class={thi.Tele2}>+01002230333</h5> 
                         </div>
-                        {/* email col */ }
+                        {/* email co */ }
                         <div class="col-2">
                            <h4 class={thi.email}><Envelope/> 
                       
