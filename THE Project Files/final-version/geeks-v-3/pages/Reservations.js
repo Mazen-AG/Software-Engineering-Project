@@ -8,15 +8,7 @@ export default class Reservations extends Component {
             <div>
                 <Sidebar />
                 <ReservationForm />
-                <div
-                    className="fixed top-0 left-0 w-screen h-screen bg-cover bg-no-repeat blur-sm"
-                    style={{
-                        backgroundImage: `url(images/placeholder-5.webp)`,
-                        backgroundSize: 'cover',
-                        zIndex: -1
-                        
-                    }}
-                />
+                
 
             </div>
         )
