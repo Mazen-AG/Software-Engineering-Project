@@ -4,9 +4,19 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Features from './components/Features';
 import Pricing from './components/Pricing';
+import { Helmet } from 'react-helmet';
+
 
 function LandingPage() {
     return (
+        <>
+        <Helmet
+            title="Geeks Hub"
+         
+        >
+            <link rel="canonical" href="http://example.com/example" />
+        </Helmet>
+
         <div className="bg-gray-100">
             <Header />
             <section className="py-16 px-4 bg-gradient-to-br from-indigo-500 to-purple-600 relative z-10">
@@ -61,6 +71,7 @@ function LandingPage() {
             <Pricing />
             <Footer />
         </div>
+        </>
     );
 }
 

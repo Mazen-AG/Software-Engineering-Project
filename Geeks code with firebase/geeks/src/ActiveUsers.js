@@ -109,10 +109,10 @@ function ActiveUsers() {
           trial.RemaningHours = 0;
           trial.isSub = false;
           
-          price = Math.round(time * 10) ;
+          price = Math.round(time * 100)/100 ;
         }
       } else {
-        price =  Math.round(time * 10) ;
+        price =  Math.round(time * 100)/100 ;
        
       }
       console.log("price i" + price);

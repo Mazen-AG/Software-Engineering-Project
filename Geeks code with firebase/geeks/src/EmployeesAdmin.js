@@ -29,14 +29,14 @@ const{authUserData , setauthUserData, update , setUpdate} = useContext(UserConte
 //this is the state for the modal that shows when the user is is active status is updated
 const [showModal, setShowModal] = useState(false);
 
-// this is the state  shown in the modal of the add employee modal 
-const [showAddEmployeeModal, setShowAddEmployeeModal] = useState(false);
+// show the modal for the add employee
+const [showAddModal, setShowAddModal] = useState(false);
 
-//this is for the new employee email
-const [newEmployeeEmail, setNewEmployeeEmail] = useState('');
+//this is the state for the email of the new employee
+const [email, setEmail] = useState('');
 
-//this is for the new employee data 
-const [empData,setEmpData] = useState({});
+
+
 
 
 
@@ -73,14 +73,62 @@ const [empData,setEmpData] = useState({});
       await updateDoc(userRef, {
           isWorking: false,
           thisMonth : activeShift.thisMonth + 1,
+
   
       
       });
   
       await setUpdate(update + 1);
       setShowModal(true);
+
   
   }
+
+  // this is the function for the admin to add a new employee by search in users collection by emaail an check that the user is not already an employee the add him to emplyee collection
+  const addEmployee = async (email) => {
+    //get all users docs 
+    const users = collection(db, 'users');
+    const data = await getDocs(users);
+    //filter the user by email
+    const filteredData = data.docs.map((doc) => ({
+        id: doc.id,
+
+        ...doc.data()
+    })).filter((user) => user.Email === email);
+    //if the user is found add him to the employee collection
+    if (filteredData.length > 0) {
+      const userRef = doc(db, 'users', filteredData[0].id);
+        const employeeRef = doc(db, 'employees', filteredData[0].id);
+        const employeeDocSnap = await getDoc(employeeRef);
+        if (!employeeDocSnap.exists()) {
+            await setDoc(employeeRef, {
+               name: filteredData[0].Name,
+                email: filteredData[0].Email,
+                isWorking: false,
+                thisMonth: 0,
+                prevMonth: 0,
+            }
+
+             
+            );
+
+            await updateDoc(userRef, {
+                isEmployee: true,
+
+            });
+
+            setShowAddModal(false);
+
+
+        }
+        else {
+            alert('this user is already an employee'); 
+        }
+    
+
+    
+  }
+}
 
 
 
@@ -144,7 +192,47 @@ const [empData,setEmpData] = useState({});
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
-
+{showAddModal ? (
+        <>
+          <div
+            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+          >
+            <div className="relative w-auto my-6 mx-auto max-w-3xl">
+              {/*content*/}
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                {/*header*/}
+                <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                  <h3 className="text-3xl font-semibold">
+                    Add New employee
+                  </h3>
+                  <button
+                    className='focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"'
+                    onClick={() => setShowAddModal(false)}
+                  >
+                
+                      ×
+                  </button>
+                </div>
+                {/*body*/}
+               
+                {/*footer*/}
+                <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                  <input type="text" className=' border-1  ' placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                 
+                  <button
+                    className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                    onClick={() => addEmployee(email)}
+                  >
+                    Add Employee
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+        </>
+      ) : null}
 
 
 
@@ -219,7 +307,7 @@ add employee button  */}
 
 
 <div className='  text-right ' >
-<button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded" onClick={() => setShowAddEmployeeModal(true)} >Add Employee</button>
+<button className="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded" onClick={() => setShowAddModal(true)} >Add Employee</button>
    </div>
 
 
@@ -257,9 +345,9 @@ add employee button  */}
                 scope="row"
                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {employee.Name} 
+                {employee.name  && employee.name }  
               </th>
-              <td class="px-6 py-4"> {employee.Email} </td>
+              <td class="px-6 py-4"> {employee.email} </td>
               <td class="px-6 py-4">{employee.thisMonth}</td>
               <td class="px-6 py-4"> {employee.prevMonth}</td>
               

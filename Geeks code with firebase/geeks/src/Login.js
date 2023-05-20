@@ -14,9 +14,15 @@ export default function Login() {
   const { user, setUser } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!email || !password) {
+      setError('Please enter email and password');
+      return;
+    }
+    else {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -41,13 +47,16 @@ export default function Login() {
         setUser(null);
       }
     } catch (error) {
-      console.log(error);
+      setError(error.message);
+      
+
     }
+  }
   };
 
   return (
-    <div className="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">
-      <div className="container h-full p-10">
+    
+      <div className="container h-full flex  justify-center  ml-36 mt-10 items-center p-10">
         <div className="g-6 flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
           <div className="w-full">
             <div className="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
@@ -66,33 +75,26 @@ export default function Login() {
                       {/* Username input */}
                       <div className="relative mb-4" data-te-input-wrapper-init>
                         <input
-                          type="text"
-                          className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                          type="Email"
+                          className="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                           id="exampleFormControlInput1"
-                          placeholder="Username"
+                          placeholder="Email"
+                          onChange={(event) => setEmail(event.target.value)}
                         />
-                        <label
-                          htmlFor="exampleFormControlInput1"
-                          className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                        >
-                          Username
-                        </label>
+                       
                       </div>
   
                       {/* Password input */}
                       <div className="relative mb-4" data-te-input-wrapper-init>
                         <input
                           type="password"
-                          className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                          className="bg-gray-50 border border-black text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+
                           id="exampleFormControlInput11"
+                          onChange={(event) => setPassword(event.target.value)}
                           placeholder="Password"
                         />
-                        <label
-                          htmlFor="exampleFormControlInput11"
-                          className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                        >
-                          Password
-                        </label>
+                     
                       </div>
   
                       {/* Submit button */}
@@ -102,6 +104,7 @@ export default function Login() {
                           type="submit"
                           data-te-ripple-init
                           data-te-ripple-color="light"
+                          onClick={handleSubmit}
                           style={{
                             background:
                               "linear-gradient(to right, #4F46E5, #8B55E0, #4338CA)",
@@ -113,7 +116,8 @@ export default function Login() {
                         {/* Forgot password link */}
                         {/* <a href="#!">Forgot password?</a> */}
                       </div>
-  
+                      {error && <p className="text-danger text-red-700">{error}</p>
+                        }
                       {/* Register button */}
                       <div className="flex items-center justify-between pb-6">
                         <p className="mb-0 mr-2">Don't have an account?</p>
@@ -126,6 +130,8 @@ export default function Login() {
                         >
                           Register
                         </button>
+                       
+
                       </div>
                     </form>
                   </div>
@@ -152,7 +158,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 } 
