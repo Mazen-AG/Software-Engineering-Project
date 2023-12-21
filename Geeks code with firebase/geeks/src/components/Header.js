@@ -17,6 +17,11 @@ export default function Header() {
     <header className="w-full sticky-nav">
       <div className="flex flex-col flex-wrap max-w-5xl p-2.5 mx-auto md:flex-row">
         <div className="flex flex-row items-center justify-between p-2 md:p-1">
+          <img
+              src="../geeks.png"
+              alt="Image description"
+              className="w-12 h-auto rounded-lg hover:shadow-lg object-contain"
+          />
           <a href="/" className="mb-4 text-2xl font-medium  p-4 inline-block text-black transition duration-300 hover:text-gray-300 dark:text-gray-300 dark:hover:text-white md:mb-0">
           
               Geeks Hub
@@ -71,24 +76,7 @@ export default function Header() {
              
             </a>
           </div>
-          <button
-            aria-label="Toggle Dark Mode"
-            type="button"
-            className="w-10 h-10 p-3 ml-5 mr-0 bg-gray-200 rounded md:ml-0 md:mr-5 dark:bg-gray-800"
-           
-          >
-            {mounted && (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                stroke="currentColor"
-                className="w-4 h-4 text-gray-800 dark:text-gray-200"
-              >
-              
-              </svg>
-            )}
-          </button>
+
           <button
             onClick={() => navigate("/login")}
             className="invisible dark:hover:border-gray-500 hover:shadow-md transition duration-300 mr-4 text-black border px-3 py-1.5 rounded dark:text-gray-300 md:visible"
