@@ -1,5 +1,4 @@
 # Geeks Hub - Coworking Space Website
-# Slash - Empowering Local Brands in Egypt
 
 Welcome to the Geeks Hub GitHub repository! Geeks Hub is a coworking space website developed using ReactJS for the front end, Firebase for user authentication, and Firestore as the realtime database.
 
