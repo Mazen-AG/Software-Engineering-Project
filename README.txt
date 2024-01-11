@@ -22,25 +22,25 @@ Geeks Hub aims to provide a seamless platform for individuals and teams to colla
 
 To run the project locally, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/your-username/geeks-hub.git
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    cd geeks-hub
    npm install
    ```
 
-3. Set up Firebase:
+3. **Set up Firebase:**
    - Create a Firebase project on the [Firebase Console](https://console.firebase.google.com/).
    - Add a web app to your project and obtain the configuration.
    - Enable Email/Password authentication.
    - Set up Firestore database rules.
    - Replace the Firebase configuration in `src/firebase/firebaseConfig.js` with your own.
 
-4. Run the application:
+4. **Run the application:**
    ```bash
    npm start
    ```
